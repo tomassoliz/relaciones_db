@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= movie.title %>
+    </title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+    </figure>
+
+    <h1><%= movie.title %></h1>
+    <br>
+    <p>GENERO: <%= movie.genre ? movie.genre.name : 'SIN ESPECIFICAR' %></p>
+    <p>DURACION: <%= movie.length + ' min' %></p>
+    <p>RATING: <%= movie.rating %></p>
+    <p>PREMIOS: <%= movie.awards %></p>
+    <p>FECHA LANZAMIENTO: <%= movie.release_date %></p>
+    <br>
+
+    <h5><b>ACTORES:</b></h5>
+    <% if (movie.actors.length) { %>
+        <ul>
+            <% movie.actors.forEach(actor=> { %>
+                <li>
+                    <%= actor.first_name %>
+                    <%= actor.last_name %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } else { %>
+            <p>No hay actores vinculados con esta película</p>
+            <% } %>
+                <br>
+                <section>
+                    <!--Aquí debe colocar los botones de Modificar - Borrar y Listado de Películas-->
+                    <a class="botonVolver" href="/movies">Listado de Películas</a>
+                    <a class="botonAgregar" href="/movies/edit/<%= movie.id %>">Editar Pelicula</a>
+                    <a class="botonBorrar" href="/movies/delete/<%= movie.id %>">Eliminar Película</a>
+                </section>
+</body>
+</html>
